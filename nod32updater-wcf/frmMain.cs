@@ -21,5 +21,11 @@ namespace nod32updater_wcf
         {
             llURL.Text = "";
         }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+
+            llURL.Text = Program.fConfig;
+        }
     }
 }

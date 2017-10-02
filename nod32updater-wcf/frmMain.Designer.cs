@@ -32,7 +32,10 @@
             this.llURL = new System.Windows.Forms.LinkLabel();
             this.btGetConfig = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ssStatus = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1.SuspendLayout();
+            this.ssStatus.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbURL
@@ -54,7 +57,7 @@
             // 
             // btGetConfig
             // 
-            this.btGetConfig.Location = new System.Drawing.Point(15, 12);
+            this.btGetConfig.Location = new System.Drawing.Point(20, 12);
             this.btGetConfig.Name = "btGetConfig";
             this.btGetConfig.Size = new System.Drawing.Size(75, 23);
             this.btGetConfig.TabIndex = 2;
@@ -66,17 +69,33 @@
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.btGetConfig);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 283);
+            this.panel1.Location = new System.Drawing.Point(12, 270);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(808, 50);
+            this.panel1.Size = new System.Drawing.Size(784, 50);
             this.panel1.TabIndex = 3;
+            // 
+            // ssStatus
+            // 
+            this.ssStatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.ssStatus.Location = new System.Drawing.Point(0, 335);
+            this.ssStatus.Name = "ssStatus";
+            this.ssStatus.Size = new System.Drawing.Size(808, 22);
+            this.ssStatus.TabIndex = 4;
+            this.ssStatus.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(62, 17);
+            this.toolStripStatusLabel1.Text = "Loading ...";
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(808, 333);
+            this.ClientSize = new System.Drawing.Size(808, 357);
+            this.Controls.Add(this.ssStatus);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.llURL);
             this.Controls.Add(this.lbURL);
@@ -85,7 +104,10 @@
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NOD32 Updater";
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.panel1.ResumeLayout(false);
+            this.ssStatus.ResumeLayout(false);
+            this.ssStatus.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -97,6 +119,8 @@
         private System.Windows.Forms.LinkLabel llURL;
         private System.Windows.Forms.Button btGetConfig;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.StatusStrip ssStatus;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 

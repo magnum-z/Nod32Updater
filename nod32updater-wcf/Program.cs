@@ -8,6 +8,7 @@ namespace nod32updater_wcf
 {
     static class Program
     {
+        public static string fConfig = "config.xml";
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
