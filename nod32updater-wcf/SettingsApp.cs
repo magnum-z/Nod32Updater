@@ -9,29 +9,44 @@ namespace nod32updater_wcf
 {
     class SettingsApp
     {
-        Configuration currentConfig;
+        static string sectionName = "appSettings";
 
-        public SettingsApp()
+        public static string ReadSetting(string key)
         {
-            currentConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-        }
-                
-        public string ReadValue(string key)
-        {
-            string keyValue = ConfigurationManager.AppSettings[key];
-            return keyValue;
-        }
-
-        public void SaveValue(string key, string value)
-        {
-            if (!ConfigurationManager.AppSettings.AllKeys.Contains(key))
-            {
-                currentConfig.AppSettings.Settings.Add(key, "");
+            string result;
+            try
+            {                
+                result = ConfigurationManager.AppSettings[key];                
             }
-            currentConfig.AppSettings.Settings[key].Value = value;
-            currentConfig.Save(ConfigurationSaveMode.Modified);
-            ConfigurationManager.RefreshSection("appSettings");            
+            catch (ConfigurationErrorsException)
+            {
+                result = "";
+            }
+
+            return result;
         }
 
+        public static void SaveSetting(string key, string value)
+        {
+            try
+            {
+                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                var settings = configFile.AppSettings.Settings;
+                if (settings[key] == null)
+                {
+                    settings.Add(key, value);
+                }
+                else
+                {
+                    settings[key].Value = value;
+                }
+                configFile.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+            }
+            catch (ConfigurationErrorsException)
+            {
+                //
+            }
+        }
     }
 }

@@ -13,8 +13,6 @@ namespace nod32updater_wcf
 {
     public partial class frmMain : Form
     {
-        SettingsApp settingsApp;
-
         public frmMain()
         {
             InitializeComponent();
@@ -40,8 +38,8 @@ namespace nod32updater_wcf
 
         private void ReadAppConfig()
         {
-            textPathFrom.Text = settingsApp.ReadValue("PathFrom");
-            textPathTo.Text = settingsApp.ReadValue("PathTo");
+            textPathFrom.Text = SettingsApp.ReadSetting("PathFrom");
+            textPathTo.Text = SettingsApp.ReadSetting("PathTo");
         }
 
         private void btGetConfig_Click(object sender, EventArgs e)
@@ -51,8 +49,7 @@ namespace nod32updater_wcf
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            llURL.Text = Program.fConfig;
-            settingsApp = new SettingsApp();
+            llURL.Text = Program.fConfig;            
             ReadAppConfig();
         }
 
@@ -73,8 +70,8 @@ namespace nod32updater_wcf
 
         private void btnSaveAppConfig_Click(object sender, EventArgs e)
         {
-            settingsApp.SaveValue("PathFrom", textPathFrom.Text);
-            settingsApp.SaveValue("PathTo", textPathTo.Text);
+            SettingsApp.SaveSetting("PathFrom", textPathFrom.Text);
+            SettingsApp.SaveSetting("PathTo", textPathTo.Text);
         }
     }
 }
