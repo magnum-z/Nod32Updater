@@ -9,8 +9,6 @@ namespace nod32updater_wcf
 {
     class SettingsApp
     {
-        static string sectionName = "appSettings";
-
         public static string ReadSetting(string key)
         {
             string result;
@@ -39,9 +37,10 @@ namespace nod32updater_wcf
                 else
                 {
                     settings[key].Value = value;
-                }
+                }                
                 configFile.Save(ConfigurationSaveMode.Modified);
                 ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+
             }
             catch (ConfigurationErrorsException)
             {

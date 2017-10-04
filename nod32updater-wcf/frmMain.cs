@@ -8,17 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.IO.Compression;
 
 namespace nod32updater_wcf
 {
     public partial class frmMain : Form
     {
+        string strPathFrom;
+        string strPathTo;
+        string strZip;
+
         public frmMain()
         {
             InitializeComponent();
         }
 
-        private void SelectFolder(TextBox textBox)
+        private void SelectFolder(TextBox textBox, string description)
         {
             string initialFolder = textBox.Text;
 
@@ -29,6 +34,7 @@ namespace nod32updater_wcf
 
             folderDialog.ShowNewFolderButton = false;
             folderDialog.SelectedPath = initialFolder;
+            folderDialog.Description = description;
             DialogResult dlgResult = folderDialog.ShowDialog();
             if (dlgResult == DialogResult.OK)
             {
@@ -38,8 +44,9 @@ namespace nod32updater_wcf
 
         private void ReadAppConfig()
         {
-            textPathFrom.Text = SettingsApp.ReadSetting("PathFrom");
-            textPathTo.Text = SettingsApp.ReadSetting("PathTo");
+            strPathFrom = SettingsApp.ReadSetting("PathFrom");
+            strPathTo = SettingsApp.ReadSetting("PathTo");
+            strZip = SettingsApp.ReadSetting("nod32_zip");
         }
 
         private void btGetConfig_Click(object sender, EventArgs e)
@@ -50,28 +57,38 @@ namespace nod32updater_wcf
         private void frmMain_Load(object sender, EventArgs e)
         {
             llURL.Text = Program.fConfig;            
-            ReadAppConfig();
+            //ReadAppConfig();
+            btnReadAppConfig_Click(btnReadAppConfig, null);
         }
 
         private void btnPathFrom_Click(object sender, EventArgs e)
         {
-            SelectFolder(textPathFrom);
+            SelectFolder(textPathFrom, "Select folder which containes offline_update_eav.zip");
         }
 
         private void btnPathTo_Click(object sender, EventArgs e)
         {
-            SelectFolder(textPathTo);
+            SelectFolder(textPathTo, "Select folder where need unpack nod32 base");
         }
 
         private void btnReadAppConfig_Click(object sender, EventArgs e)
         {
             ReadAppConfig();
+
+            textPathFrom.Text = strPathFrom;
+            textPathTo.Text = strPathTo;
         }
 
         private void btnSaveAppConfig_Click(object sender, EventArgs e)
         {
             SettingsApp.SaveSetting("PathFrom", textPathFrom.Text);
-            SettingsApp.SaveSetting("PathTo", textPathTo.Text);
+            SettingsApp.SaveSetting("PathTo", textPathTo.Text);            
+        }
+
+        private void btUnpackBase_Click(object sender, EventArgs e)
+        {            
+            Array.ForEach(Directory.GetFiles(strPathTo), File.Delete);
+            ZipFile.ExtractToDirectory(strPathFrom + "\\" + strZip, strPathTo);            
         }
     }
 }

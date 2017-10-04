@@ -43,6 +43,7 @@
             this.folderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.btnReadAppConfig = new System.Windows.Forms.Button();
             this.btnSaveAppConfig = new System.Windows.Forms.Button();
+            this.btUnpackBase = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.ssStatus.SuspendLayout();
             this.SuspendLayout();
@@ -77,6 +78,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btUnpackBase);
             this.panel1.Controls.Add(this.btGetConfig);
             this.panel1.Location = new System.Drawing.Point(12, 270);
             this.panel1.Name = "panel1";
@@ -174,6 +176,16 @@
             this.btnSaveAppConfig.UseVisualStyleBackColor = true;
             this.btnSaveAppConfig.Click += new System.EventHandler(this.btnSaveAppConfig_Click);
             // 
+            // btUnpackBase
+            // 
+            this.btUnpackBase.Location = new System.Drawing.Point(101, 12);
+            this.btUnpackBase.Name = "btUnpackBase";
+            this.btUnpackBase.Size = new System.Drawing.Size(75, 23);
+            this.btUnpackBase.TabIndex = 3;
+            this.btUnpackBase.Text = "Unpack zip";
+            this.btUnpackBase.UseVisualStyleBackColor = true;
+            this.btUnpackBase.Click += new System.EventHandler(this.btUnpackBase_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -222,6 +234,7 @@
         private System.Windows.Forms.FolderBrowserDialog folderDialog;
         private System.Windows.Forms.Button btnReadAppConfig;
         private System.Windows.Forms.Button btnSaveAppConfig;
+        private System.Windows.Forms.Button btUnpackBase;
     }
 }
 
