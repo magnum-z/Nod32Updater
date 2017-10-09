@@ -56,7 +56,11 @@ namespace nod32updater_wcf
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            llURL.Text = Program.fConfig;            
+            llURL.Text = Program.fConfig;
+
+            textBoxUser.Text = Program.AuthUser;
+            textBoxPassword.Text = Program.AuthPassword;
+
             //ReadAppConfig();
             btnReadAppConfig_Click(btnReadAppConfig, null);
         }
