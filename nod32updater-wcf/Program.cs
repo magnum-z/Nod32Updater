@@ -8,10 +8,6 @@ namespace nod32updater_wcf
 {
     static class Program
     {
-        public static string fConfig = "config.xml";
-        public static string AuthUser = "EAV-user";
-        public static string AuthPassword = "EAV-password";
-
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
